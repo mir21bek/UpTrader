@@ -1,0 +1,16 @@
+{% load menu_tags %}
+
+{% draw_menu 'main_menu' %}
+<ul>
+  {% for item in menu_items %}
+    <li{% if item.url == current_path %} class="active"{% endif %}>{{ item.title }}
+      {% if item.children.all %}
+        <ul>
+          {% for child in item.children.all %}
+            <li{% if child.url == current_path %} class="active"{% endif %}>{{ child.title }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
